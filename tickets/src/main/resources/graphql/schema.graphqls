@@ -1,0 +1,25 @@
+# schema.graphqls
+
+type Ticket {
+    id: ID!
+    usuario: String
+    fechaCreacion: String
+    fechaActualizacion: String
+    estatus: Status
+}
+
+enum Status {
+    ABIERTO
+    CERRADO
+}
+
+type Query {
+    tickets(usuario: String, page: Int, size: Int): [Ticket]
+    ticket(id: ID!): Ticket
+}
+
+type Mutation {
+    createTicket(usuario: String!, fechaCreacion: String!, fechaActualizacion: String!, estatus: Status!): Ticket
+    updateTicket(id: ID!, usuario: String, fechaCreacion: String, fechaActualizacion: String, estatus: Status): Ticket
+    deleteTicket(id: ID!): String
+}

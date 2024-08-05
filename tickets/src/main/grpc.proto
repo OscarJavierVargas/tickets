@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package tickets;
+
+// Define el servicio
+service TicketService {
+  rpc GetTicketsByUsuario(TicketRequest) returns (TicketResponseList);
+}
+
+// Define el mensaje de solicitud
+message TicketRequest {
+  string usuario = 1;
+  int32 page = 2;
+  int32 size = 3;
+}
+
+// Define el mensaje de respuesta para un ticket
+message Ticket {
+  int32 id = 1;
+  string usuario = 2;
+  string fechaCreacion = 3;
+  string fechaActualizacion = 4;
+  string estatus = 5;
+}
+
+// Define el mensaje de respuesta que contiene una lista de tickets
+message TicketResponseList {
+  repeated Ticket tickets = 1;
+  int32 totalElements = 2;
+  int32 totalPages = 3;
+}
